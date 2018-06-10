@@ -75,40 +75,99 @@ func (dev *MockDevice) RunCommand(command string) RawResult {
 func mockMode1Outputs(subcmd string) []string {
 	if strings.HasPrefix(subcmd, "00") {
 		// PIDs supported part 1
+		// Support all of the ones in this library except "obd standard" command
 		return []string{
-			"41 00 0C 10 00 00", // Means PIDs supported: 05, 06, 0C
+			"41 00 1F FD 80 02",
 		}
 	} else if strings.HasPrefix(subcmd, "20") {
 		// PIDs supported part 2
 		return []string{
-			"41 20 00 00 00 00",
+			"41 20 00 00 00 00", // None
 		}
 	} else if strings.HasPrefix(subcmd, "40") {
 		// PIDs supported part 3
 		return []string{
-			"41 40 00 00 00 00",
+			"41 40 00 00 00 00", // None
 		}
 	} else if strings.HasPrefix(subcmd, "60") {
 		// PIDs supported part 4
 		return []string{
-			"41 60 00 00 00 00",
+			"41 60 00 00 00 00", // None
 		}
 	} else if strings.HasPrefix(subcmd, "80") {
 		// PIDs supported part 5
 		return []string{
-			"41 80 00 00 00 00",
+			"41 80 00 00 00 00", // None
+		}
+	} else if strings.HasPrefix(subcmd, "04") {
+		// Engine Load
+		return []string{
+			"41 04 7F",
 		}
 	} else if strings.HasPrefix(subcmd, "05") {
+		// Coolant Temperature
 		return []string{
-			"41 05 01 00 00 00",
+			"41 05 64",
 		}
 	} else if strings.HasPrefix(subcmd, "06") {
+		// Short Term Fuel Trim Bank 1
 		return []string{
-			"41 06 02 00 00 00",
+			"41 06 64",
+		}
+	} else if strings.HasPrefix(subcmd, "07") {
+		// Long Term Fuel Trim Bank 1
+		return []string{
+			"41 07 45",
+		}
+	} else if strings.HasPrefix(subcmd, "08") {
+		// Short Term Fuel Trim Bank 2
+		return []string{
+			"41 08 66",
+		}
+	} else if strings.HasPrefix(subcmd, "09") {
+		// Long Term Fuel Trim Bank 2
+		return []string{
+			"41 09 75",
+		}
+	} else if strings.HasPrefix(subcmd, "0A") {
+		// Fuel Pressure
+		return []string{
+			"41 0A 80",
+		}
+	} else if strings.HasPrefix(subcmd, "0B") {
+		// 	Intake manifold absolute pressure
+		return []string{
+			"41 0B 80",
 		}
 	} else if strings.HasPrefix(subcmd, "0C") {
+		// RPM
 		return []string{
-			"41 0C 03 00",
+			"41 0C 0F A0",
+		}
+	} else if strings.HasPrefix(subcmd, "0D") {
+		// Speed
+		return []string{
+			"41 0D FF",
+		}
+	} else if strings.HasPrefix(subcmd, "0E") {
+		// Timing advance
+		return []string{
+			"41 0E 80",
+		}
+	} else if strings.HasPrefix(subcmd, "10") {
+		// MAF air flow rate
+		return []string{
+			"41 10 80 80",
+		}
+	} else if strings.HasPrefix(subcmd, "11") {
+		// Throttle Position
+		return []string{
+			"41 11 80",
+		}
+	} else if strings.HasPrefix(subcmd, "1F") {
+		// Runtime Since Engine Start
+		return []string{
+			"41 1F 30 A0",
 		}
 	} else {
 		return []string{"NOT SUPPORTED"}
