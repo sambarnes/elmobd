@@ -613,7 +613,7 @@ type RuntimeSinceStart struct {
 // parameters.
 func NewRuntimeSinceStart() *RuntimeSinceStart {
 	return &RuntimeSinceStart{
-		BaseCommand{31, 1, "runtime_since_engine_start"},
+		BaseCommand{31, 2, "runtime_since_engine_start"},
 		UIntCommand{},
 	}
 }
